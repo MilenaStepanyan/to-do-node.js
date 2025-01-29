@@ -69,7 +69,7 @@ export const editToDo = async (req, res) => {
 export const deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const [result] = await promisePool.query(`DROP FROM tasks WHERE id=?`, [
+    const [result] = await promisePool.query(`DELETE FROM tasks WHERE id=?`, [
       id,
     ]);
     if (result.affectedRows === 0) {
