@@ -13,7 +13,7 @@ export const createToDo = (req, res) => {
       `INSERT INTO tasks title,description VALUES (?,?)`,
       [title, description || ""]
     );
-
+    return res.status(STATUS_CODES.CREATED).json({msg:"Created successfully",id:result.id})
   } catch (err) {
     return res
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
