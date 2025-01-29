@@ -66,3 +66,24 @@ export const editToDo = async (req, res) => {
       .json({ msg: "internal server error" });
   }
 };
+export const deleteTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [result] = await promisePool.query(`DROP FROM tasks WHERE id=?`, [
+      id,
+    ]);
+    if (result.affectedRows === 0) {
+      return res
+        .status(STATUS_CODES.NOT_FOUND)
+        .json({ msg: "task is not founded" });
+    }
+    return res
+      .status(STATUS_CODES.OK)
+      .json({ msg: "task deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
+      .json({ msg: "internal server error" });
+  }
+};
