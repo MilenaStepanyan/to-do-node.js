@@ -38,3 +38,6 @@ export const getToDos = async (req, res) => {
       .json({ msg: "internal server error" });
   }
 };
+export const editToDo = async (req, res) => {
+    
+};
