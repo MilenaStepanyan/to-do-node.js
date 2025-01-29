@@ -39,5 +39,13 @@ export const getToDos = async (req, res) => {
   }
 };
 export const editToDo = async (req, res) => {
-    
+    try{
+        const {title,description,completed} = req.body
+        if(!title||!description||!completed){
+            return res.status(STATUS_CODES.BAD_REQUEST).json({msg:"missing required fields"})
+        }
+    }catch(error){
+        console.log(error);
+        return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({msg:"internal server error"})
+    }
 };
